@@ -8,9 +8,7 @@
       <p>纪念上海大学建校100周年校史可视化展示平台</p>
       <img src="static/party.jpg" style="height: 80px;">
     </div>
-    <div class="background">
-      <img src="static/background.jpg">
-    </div>
+    <img src="static/background.jpg" class="background">
   </div>
 </template>
 
@@ -92,7 +90,6 @@ export default {
 }
 .active-item {
   color: white;
-  box-shadow: 0px 14px 30px 0px rgba(69, 158, 255, 0.2);
   font-size: 25px;
   font-family: Source Han Sans CN-Medium, Source Han Sans CN;
   font-weight: 400;
