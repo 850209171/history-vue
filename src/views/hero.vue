@@ -2,26 +2,36 @@
   <div id="hero">
     <div class="parent">
       <div v-for="(item, index) in heroList" :key="index" class="box-red" :class="index%2 === 1 ? 'box-white': ''">
-        <img :src="item.avatar" style="width: 100px; height: 100px; opacity: 1; border-radius: 50%">
+        <img :src="item.avatar" style="width: 100px; height: 100px; opacity: 1; border-radius: 50%; margin: 10px;">
         <p :class="index%2 === 1 ? 'name-style-white': 'name-style-red'">{{item.name}}</p>
         <p :class="index%2 === 1 ? 'title-style-white': 'title-style-red'">{{item.title}}</p>
         <p :class="index%2 === 1 ? 'introduction-style-white': 'introduction-style-red'">{{item.introduction}}</p>
-        <p :class="index%2 === 1 ? 'button-style-white': 'button-style-red'" @click="showDetailed()"><a>查看更多→</a></p>
+        <!-- <a href="" :class="index%2 === 1 ? 'button-style-white': 'button-style-red'" >查看更多→</a> -->
+        <div :class="index%2 === 1 ? 'button-style-white': 'button-style-red'" @click="showDetailed(index)">查看更多→</div>
       </div>
     </div>
+    <template v-if="bol">
+      <Detail @cancel="close"></Detail>
+    </template>
   </div>
 </template>
 
 <script>
-import {getFigureList} from '@/api'
+import {getFigureList} from '@/api/index'
+import Detail from "./heroDetail.vue";
 
 export default {
-  name: 'Hero',
+  name: 'HeroDetail',
   data() {
     return {
       heroList: [],
-      picUrl: []
+      picUrl: [],
+      bol: false,  // 控制弹窗界面的显示
+      label: 0
     }
+  },
+  components: {
+    Detail
   },
   created() {
     getFigureList().then(res => {
@@ -32,15 +42,31 @@ export default {
     })
   },
   methods:{
-    showDetailed() {
-      console.log('showDetailedMessage', idx)
+    showDetailed(index) {
+      this.label = index;
+      sessionStorage.setItem('index', (this.label));
+      console.log(this.label+1);
+      this.bol = true;
     },
+    close() {
+      this.bol = false;
+    }
   }
 }
 </script>
 
 
 <style lang="scss">
+
+//这里面可以自定义字体样式等，都是CSS基础
+.rule {
+  position: absolute;
+  width: 0.82rem;
+  height: 0.36rem;
+  top: 0.08rem;
+  right: 0rem;
+  background: #111111;
+}
 .parent {
   width: 80%;
   height: 80%;
@@ -61,7 +87,7 @@ export default {
   box-sizing: border-box;
   flex: 0 0 0 20%;
   margin: 20px 10px;
-  padding: 15px 10px;
+  // padding: 15px 10px;
   text-align: center;
   opacity: 1;
 }
@@ -75,7 +101,7 @@ export default {
   box-sizing: border-box;
   flex: 0 0 0 20%;
   margin: 20px 10px;
-  padding: 15px 10px;
+  // padding: 15px 10px;
   text-align: center;
   opacity: 1;
 }
@@ -123,25 +149,33 @@ export default {
 // 介绍部分(introduction)样式
 .introduction-style-red {
   width: 100%;
-  height: 91px;
+  height: 98px;
   font-size: 16px;
   font-family: Source Han Sans CN-Regular, Source Han Sans CN;
   font-weight: 400;
-  overflow: hidden; // 文字溢出部分隐藏
   color: #ffffff;
   line-height: 16px;
   word-wrap: break-all;  //
+  overflow-x: hidden; 
+  overflow-y: scroll;
+}
+.introduction-style-red::-webkit-scrollbar {
+  display: none;
 }
 .introduction-style-white {
   width: 100%;
-  height: 91px;
+  height: 98px;
   font-size: 16px;
   font-family: Source Han Sans CN-Regular, Source Han Sans CN;
   font-weight: 400;
-  overflow: hidden;
   color: #000000;
   line-height: 16px;
   word-wrap: break-word;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.introduction-style-white::-webkit-scrollbar {
+  display: none;
 }
 .button-style-red {
   width: 100% ;
@@ -150,7 +184,7 @@ export default {
   font-family: Source Han Sans CN-Regular, Source Han Sans CN;
   font-weight: 400;
   color: #ffffff;
-  line-height: 0px;
+  margin: -10px;
 }
 .button-style-white {
   width: 100%;
@@ -159,6 +193,6 @@ export default {
   font-family: Source Han Sans CN-Regular, Source Han Sans CN;
   font-weight: 400;
   color: #000000;
-  line-height: 0px;
+  margin: -10px;
 }
 </style>

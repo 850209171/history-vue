@@ -1,14 +1,11 @@
 <template>
-  <div id="app">
-    <div class="header">
-      <img src="static/school.jpg" style="padding-left: 5%">
-      <div v-for="(item, index) in headerList" :key="index" class="menu-item" :class="activedIndex === index ? 'active-item': ''" @click="changeMenu(index)">
-        {{item.name}}
-      </div>
-      <p>纪念上海大学建校100周年校史可视化展示平台</p>
-      <img src="static/party.jpg" style="height: 80px;">
+  <div class="header">
+    <img src="/static/school.png" style="padding-left: 5%">
+    <div v-for="(item, index) in headerList" :key="index" class="menu-item" :class="activedIndex === index ? 'active-item': ''" @click="changeMenu(index)">
+      {{item.name}}
     </div>
-    <img src="static/background.jpg" class="background">
+    <p>纪念上海大学建校100周年校史可视化展示平台</p>
+    <img src="/static/party.png" style="height: 80px;">
   </div>
 </template>
 
@@ -53,13 +50,13 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #ffffff;
-}
+// #app {
+//   font-family: 'Avenir', Helvetica, Arial, sans-serif;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+//   text-align: center;
+//   color: #ffffff;
+// }
 .header {
   width: 100%;
   height: 5%;

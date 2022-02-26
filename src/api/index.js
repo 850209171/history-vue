@@ -14,14 +14,14 @@ export function getFigureList(datas) {
 }
 
 // 获取校史任务详情
-export function getFigureDetail(datas) {
+export function getFigureDetail({id}) {
   return axios({
     url: "/shuhistorytest/figure/detail",
     method: "get",
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded' //设置请求头请求格式为x-www-form-urlencoded
     },
-    data: datas
+    params: {id}
   })
 }
 

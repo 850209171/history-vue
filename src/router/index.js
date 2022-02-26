@@ -11,25 +11,21 @@ const routes = [
   {
     path: "/hero",
     name: "Hero",
-    component: () => import("../views/hero.vue"),
-    meta: { requireAuth: true }
+    component: () => import("../views/hero.vue")
   },
   {
     path: "/history",
     name: "History",
-    component: () => import("../views/history.vue"),
-    meta: { requireAuth: true }
+    component: () => import("../views/history.vue")
   },
   {
     path: "/landmark",
     name: "Landmark",
-    component: () => import("../views/landmark.vue"),
-    meta: { requireAuth: true }
+    component: () => import("../views/landmark.vue")
   },{
     path: "/message",
     name: "Message",
-    component: () => import("../views/history.vue"),
-    meta: { requireAuth: true }
+    component: () => import("../views/history.vue")
   }
 ];
 
