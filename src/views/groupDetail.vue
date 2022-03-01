@@ -6,99 +6,50 @@
       </div>
       <!-- 内容 -->
       <div class="photo-line">
-        <img :src="heroDetail.avatar" style="width: 60px; height: 60px; opacity: 1; border-radius: 50%;">
-        <p class="name-style" style="padding-left: 30px;">{{ heroDetail.name }}</p>
-        <p class="name-style">|</p>
-        <p class="title-style">{{ heroDetail.title }}</p>
+        <p class="title-style">{{ groupDetail.title }}</p>
       </div>
-      <!-- 视频 -->
+      <!-- 图片 -->
       <div class="video-line">
-          <!-- <img src="/static/include.jpg" style="width: 400px; height: 225px; background: #FFF4F4; 
-            border-radius: 20px 20px 20px 20px; opacity: 1; border: 1px solid #707070;" alt=""> -->
-          <video :src="heroDetail.video" :controls="videoOptions.controls"
-                  class="video-js vjs-big-play-centered vjs-fluid"
-                  webkit-playsinline="true"
-                  playsinline="true"
-                  x-webkit-airplay="allow"
-                  x5-playsinline
-                  autoplay="autoplay"
-                  ref="video" 
-                  style="width: 400px; height: 225px; background: #FFF4F4; 
-                        border-radius: 20px 20px 20px 20px; 
-                        opacity: 1; border: 1px solid #707070;
-                        margin: 20px auto;">
-          </video>
+          <img :src="groupDetail.picture" style="width: 400px; height: 225px; background: #FFF4F4; 
+            border-radius: 20px 20px 20px 20px; opacity: 1; border: 1px solid #707070;" alt="">
       </div>
       <!-- 生平事迹 -->
       <div class="self-line">
           <img src="/static/self.png" style="width: 25px; height: 25px; opacity: 1;" alt="">
-          <p>人物生平</p>
+          <p>相关人物</p>
       </div>
-      <div class="self-introduction">  {{ heroDetail.introduction }}</div>
+      <div class="self-introduction">  {{ groupDetail.name }}</div>
       <!-- 在上大的故事 -->
       <div class="story-line">
           <img src="/static/book.png" style="width: 25px; height: 25px; opacity: 1;" alt="">
-          <p>在上大的故事</p>
+          <p>事件内容</p>
       </div>
-      <div class="story-text">{{ heroDetail.story }}</div>
+      <div class="story-text">{{ groupDetail.content }}</div>
     </div>
   </div>
 </template>
 
 <script>
-import {getFigureDetail} from '@/api/index'
+import {getGroupDetail} from '@/api/index'
 
 export default {
   data() {
     return {
-      heroDetail: {},
-      index: sessionStorage.getItem('index'),
-      videoOptions: {
-        controls: true,
-        src: "", // url地址
-      },
-      player: null,
-      playTime:'',
-      seekTime:'',
-      current:''
+      groupDetail: {},
+      index: sessionStorage.getItem('groupIndex'),
     }
   },
   created() {
       let param = {
         id: this.index
       };
-      getFigureDetail(param).then(res => {
-        this.heroDetail = res.data.data;
+      getGroupDetail(param).then(res => {
+        this.groupDetail = res.data.data;
       })
-  },
-  mounted() {
-    this.initVideo();
   },
   methods: {
     close() {
       this.$emit('cancel');
-    },
-    // keyboardclose() {
-    //   this.$emit('cancel');
-    // },
-    initVideo() {
-      //原生初始化视频方法
-      let myVideo = this.$refs.video;
-      //ontimeupdate
-      myVideo.ontimeupdate = function() {myFunction()};
-      let _this = this;
-
-      function myFunction(){
-        let playTime = myVideo.currentTime
-        setTimeout(function () {
-            localStorage.setItem("cacheTime",playTime)
-        },500)
-        let time = localStorage.getItem("cacheTime")
-        // 当前播放位置发生变化时触发。
-        if(playTime - Number(time) > 2){
-            myVideo.currentTime = Number(time)
-        }
-      };
     }
   }
 };
@@ -158,12 +109,13 @@ export default {
     text-align: center;
 }
 .title-style{
-    width: 120px;
+    width: auto;
     height: 20px;
     font-size: 20px;
     font-family: Source Han Sans CN-Regular, Source Han Sans CN;
     font-weight: 300;
     color: #444444;
+    margin: 0px auto;
 }
 .video-line{
     width: 100%;

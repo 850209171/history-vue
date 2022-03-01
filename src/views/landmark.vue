@@ -3,13 +3,11 @@
     Landmark
   </div>
 </template>
-
 <script>
 export default {
-  name: 'Landmark'
+  name: 'Landmark '
 }
 </script>
-
-
 <style lang="scss">
+
 </style>

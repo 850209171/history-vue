@@ -6,7 +6,6 @@
         <p :class="index%2 === 1 ? 'name-style-white': 'name-style-red'">{{item.name}}</p>
         <p :class="index%2 === 1 ? 'title-style-white': 'title-style-red'">{{item.title}}</p>
         <p :class="index%2 === 1 ? 'introduction-style-white': 'introduction-style-red'">{{item.introduction}}</p>
-        <!-- <a href="" :class="index%2 === 1 ? 'button-style-white': 'button-style-red'" >查看更多→</a> -->
         <div :class="index%2 === 1 ? 'button-style-white': 'button-style-red'" @click="showDetailed(index)">查看更多→</div>
       </div>
     </div>
@@ -25,7 +24,6 @@ export default {
   data() {
     return {
       heroList: [],
-      picUrl: [],
       bol: false,  // 控制弹窗界面的显示
       label: 0
     }
@@ -87,7 +85,6 @@ export default {
   box-sizing: border-box;
   flex: 0 0 0 20%;
   margin: 20px 10px;
-  // padding: 15px 10px;
   text-align: center;
   opacity: 1;
 }
@@ -101,7 +98,6 @@ export default {
   box-sizing: border-box;
   flex: 0 0 0 20%;
   margin: 20px 10px;
-  // padding: 15px 10px;
   text-align: center;
   opacity: 1;
 }
@@ -115,6 +111,7 @@ export default {
   font-weight: 500;
   color: #ffffff;
   text-align: center;
+  margin: 0px auto;
 }
 .name-style-white {
   width: 100%;
@@ -124,6 +121,7 @@ export default {
   font-weight: 500;
   color: #000000;
   text-align: center;
+  margin: 0px auto;
 }
 
 // 曾任职字样(title)样式
@@ -148,31 +146,33 @@ export default {
 
 // 介绍部分(introduction)样式
 .introduction-style-red {
-  width: 100%;
+  width: 90%;
   height: 98px;
   font-size: 16px;
   font-family: Source Han Sans CN-Regular, Source Han Sans CN;
   font-weight: 400;
   color: #ffffff;
-  line-height: 16px;
+  line-height: 20px;
   word-wrap: break-all;  //
   overflow-x: hidden; 
   overflow-y: scroll;
+  margin: 0px auto;
 }
 .introduction-style-red::-webkit-scrollbar {
   display: none;
 }
 .introduction-style-white {
-  width: 100%;
+  width: 90%;
   height: 98px;
   font-size: 16px;
   font-family: Source Han Sans CN-Regular, Source Han Sans CN;
   font-weight: 400;
   color: #000000;
-  line-height: 16px;
+  line-height: 20px;
   word-wrap: break-word;
   overflow-x: hidden;
   overflow-y: scroll;
+  margin: 0px auto;
 }
 .introduction-style-white::-webkit-scrollbar {
   display: none;
@@ -184,7 +184,7 @@ export default {
   font-family: Source Han Sans CN-Regular, Source Han Sans CN;
   font-weight: 400;
   color: #ffffff;
-  margin: -10px;
+  margin: 20px auto;
 }
 .button-style-white {
   width: 100%;
@@ -193,6 +193,6 @@ export default {
   font-family: Source Han Sans CN-Regular, Source Han Sans CN;
   font-weight: 400;
   color: #000000;
-  margin: -10px;
+  margin: 20px auto;
 }
 </style>

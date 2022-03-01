@@ -62,14 +62,14 @@ export function getGroupList(datas) {
 }
 
 // 获取团史详情
-export function getGroupDetail(datas) {
+export function getGroupDetail({id}) {
   return axios({
     url: "/shuhistorytest/grouphistory/detail",
     method: "get",
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded' //设置请求头请求格式为x-www-form-urlencoded
     },
-    data: datas
+    params: {id}
   })
 }
 
@@ -86,13 +86,13 @@ export function getMessageList(datas) {
 }
 
 // 获取光荣榜详情
-export function getMessageDetail(datas) {
+export function getMessageDetail({id}) {
   return axios({
     url: "/shuhistorytest/halloffame/detail",
     method: "get",
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded' //设置请求头请求格式为x-www-form-urlencoded
     },
-    data: datas
+    params: {id}
   })
 }
