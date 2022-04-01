@@ -2,7 +2,7 @@
   <div class="mark">
     <div class="alert">
       <div class="quit">
-        <a href="" @click="close"><img src="/static/close.png" alt="" style="heigth: 26px;"></a>
+        <div @click="close" class="click"><img src="/static/close.png" alt="" style="heigth: 26px;"></div>
       </div>
       <!-- 内容 -->
       <div class="photo-line">
@@ -49,6 +49,7 @@
 import {getFigureDetail} from '@/api/index'
 
 export default {
+  name: 'HeroDetail',
   data() {
     return {
       heroDetail: {},
@@ -105,6 +106,9 @@ export default {
 </script>
 
 <style lang="scss">
+.click {
+  cursor: pointer;
+}
 .mark {
     width: 100%;
     height: 100%;

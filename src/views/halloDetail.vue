@@ -36,6 +36,7 @@
 import {getMessageDetail} from '@/api/index'
 
 export default {
+  name: 'halloDetail',
   data() {
     return {
       halloDetail: {},
