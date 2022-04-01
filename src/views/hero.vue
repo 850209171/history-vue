@@ -1,17 +1,17 @@
 <template>
   <div id="hero">
     <div class="parent">
-      <div v-for="(item, index) in heroList" :key="index" class="box-red" :class="index%2 === 1 ? 'box-white': ''">
+      <div v-for="(item, index) in heroList" :key="index" :class="(index%2 === 1 && (Math.floor(index / 4)) % 2 !== 1)|| (index%2 !== 1 && (Math.floor(index / 4)) % 2 === 1) ? 'box-white': 'box-red'">
         <img :src="item.avatar" style="width: 100px; height: 100px; opacity: 1; border-radius: 50%; margin: 10px;">
-        <p :class="index%2 === 1 ? 'name-style-white': 'name-style-red'">{{item.name}}</p>
-        <p :class="index%2 === 1 ? 'title-style-white': 'title-style-red'">{{item.title}}</p>
-        <p :class="index%2 === 1 ? 'introduction-style-white': 'introduction-style-red'">{{item.introduction}}</p>
-        <div :class="index%2 === 1 ? 'button-style-white': 'button-style-red'" @click="showDetailed(index)">查看更多→</div>
+        <p :class="(index%2 === 1 && (Math.floor(index / 4)) % 2 !== 1)|| (index%2 !== 1 && (Math.floor(index / 4)) % 2 === 1)? 'name-style-white': 'name-style-red'">{{item.name}}</p>
+        <p :class="(index%2 === 1 && (Math.floor(index / 4)) % 2 !== 1)|| (index%2 !== 1 && (Math.floor(index / 4)) % 2 === 1) ? 'title-style-white': 'title-style-red'">{{item.title}}</p>
+        <p :class="(index%2 === 1 && (Math.floor(index / 4)) % 2 !== 1)|| (index%2 !== 1 && (Math.floor(index / 4)) % 2 === 1) ? 'introduction-style-white': 'introduction-style-red'">{{item.introduction}}</p>
+        <div :class="(index%2 === 1 && (Math.floor(index / 4)) % 2 !== 1)|| (index%2 !== 1 && (Math.floor(index / 4)) % 2 === 1) ? 'button-style-white': 'button-style-red'" @click="showDetailed(item.id)">查看更多→</div>
       </div>
     </div>
-    <template v-if="bol">
-      <Detail @cancel="close"></Detail>
-    </template>
+    <!-- <template > -->
+    <Detail @cancel="close" v-if="bol"></Detail>
+    <!-- </template> -->
   </div>
 </template>
 
@@ -20,7 +20,7 @@ import {getFigureList} from '@/api/index'
 import Detail from "./heroDetail.vue";
 
 export default {
-  name: 'HeroDetail',
+  name: 'Hero',
   data() {
     return {
       heroList: [],
@@ -185,6 +185,12 @@ export default {
   font-weight: 400;
   color: #ffffff;
   margin: 20px auto;
+  cursor: pointer;
+  
+  &:hover {
+    color: black;
+  }
+
 }
 .button-style-white {
   width: 100%;
@@ -194,5 +200,10 @@ export default {
   font-weight: 400;
   color: #000000;
   margin: 20px auto;
+  cursor: pointer;
+
+  &:hover {
+    color: red;
+  }
 }
 </style>
